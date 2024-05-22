@@ -11,7 +11,15 @@ router.post('/log', (req, res) => {
         window.webContents.send('log', {level, message, context})
     })
 
-    res.sendStatus(200)
+    Object.values(state.windows).forEach(window => {
+        window.webContents.send('log', {level, message, context})
+    })
+
+    if (state.activeMenuBar?.window) {
+      state.activeMenuBar.window.webContents.send('log', {level, message, context})
+    }
+
+  res.sendStatus(200)
 })
 
 export default router;
