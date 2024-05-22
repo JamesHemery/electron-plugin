@@ -12,9 +12,6 @@ router.post('/log', (req, res) => {
     Object.values(state_1.default.windows).forEach(window => {
         window.webContents.send('log', { level, message, context });
     });
-    Object.values(state_1.default.windows).forEach(window => {
-        window.webContents.send('log', { level, message, context });
-    });
     if ((_a = state_1.default.activeMenuBar) === null || _a === void 0 ? void 0 : _a.window) {
         state_1.default.activeMenuBar.window.webContents.send('log', { level, message, context });
     }
